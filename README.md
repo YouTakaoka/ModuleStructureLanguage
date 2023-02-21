@@ -9,12 +9,17 @@ So, what's the "internal structure" of a module?
 Sometimes, a module is consists of some "submodules."
 
 For example, let's consider a simple module `M` which calculates the total value to pay when we buy some pencils and erasers.
-Apparently, `M` needs to know the price of a pencil and an eraser, which we denote `x`, `y` respectively.
-In addition, `M` takes the data of the number of pencils and erasers, denoted by `m`, `n` respectively, as input.
-Now we can draw the "Module Structure Diagram (MSD)" of `M`, as shown below:
+Apparently, `M` needs to know the prices of a pencil and an eraser.
+Let us give some "nicknames" on them, such as `x` and `y`, respectively.
+In addition, `M` takes the data of the numbers of pencils and erasers, denoted by `m`, `n` respectively, as input.
+As a result of some internal processing, `M` outputs a single integer, which we may call `z`.
 
-[fig]
+OK, now we can draw the "Module Structure Diagram (MSD)" of `M`, as shown below:
+
+![SimpleExample1](fig/SimpleExample1.svg)
 
 Where, `+` and `*` represents the "primitive" modules, the modules which have no internal structures (or which we don't need to consider them).
 Module `+` takes two integers as input data, and outputs the sum of the two integers.
 Now the reader may easily guess the function of another module `*`.
+
+The diagram above clearly describes the "internal structure" of `M`, namely, how it uses the input data and its "submodules" `+` and `*` to produce the output.
