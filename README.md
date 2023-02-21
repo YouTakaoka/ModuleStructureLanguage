@@ -24,16 +24,24 @@ Now the reader may easily guess the function of another module `*`.
 
 The diagram above clearly describes the "internal structure" of `M`, namely, how it uses the input data and its "submodules" `+` and `*` to produce the output.
 
-## Description using a formal language
-Diagrams like above figure may be convenient, but is it powerful enough?
-Imagine that we have a simple language to describe the structures sketched by the diagrams.
-Also, imagine that we have a tool which automatically produces the diagrams from documents written by the language.
-That seems awesome, isn't it?
+Sometimes, it is also helpful to draw the diagrams of primitive modules.
 
-So, let's write down a "document" corresponding to the diagram above.
+![Add](fig/Add.svg)
+![Mult](fig/Mult.svg)
+
+The reader may wonder why their internal areas are not filled by their colors, unlike in the diagram of `M`.
+The reason of this will be clear in the next section.
+
+## Description using a formal language
+Diagrams like above figures are easy to understand for humans, but little bit inconvenient to treat for computers, because they are not text data.
+Imagine that we have a simple language to describe the structures sketched in the figures above.
+Also, imagine that we have a tool which automatically produces the diagrams from documents written in the language.
+Sounds awesome, isn't it?
+
+So, let's write down "documents" corresponding to the diagrams above.
 As mentioned at the beginning of this document, we choose the YAML format as the base of the language. 
 
-Just for convenience to write in the format of YAML, first we rename the submodules used in the above example.
+Just for convenience to write in the format of YAML, first we change the names of the submodules used in the example of the previous section.
 That is, we'll call the module which used to be called `+` as `Add` from now. Similarly, we'll call the old `*` as `Mult` from now.
 Then, definition of these modules may look like as follows:
 
@@ -92,7 +100,8 @@ structure:
 
 The `structure` directive consists of two directives, namely, `submodules` directive and `out` directive. The value of `submodules` directive is an array of definitions of "module instances."
 
-In fact, the things we have called "module definitions" so far are definitions of "module classes, to be rigorous."
+Rigorously, the things we have called "module definitions" so far are in fact definitions of "module classes."
 Roughly speaking, a module class is a "template" of modules instances, which we use in other modules as their "components."
+In the diagrams in the previous section, filled rectangles represent module instances, and rectangles with white internals represent module classes.
 
-The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules.
+The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules of `M`.
