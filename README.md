@@ -6,7 +6,7 @@ Even manual works are also regarded as special "modules," as long as the formats
 
 ## Module Structure Diagram
 So, what's the "internal structure" of a module?
-Sometimes, a module is consists of some "submodules."
+Sometimes, a module consists of some "submodules."
 
 For example, let's consider a simple module `M` which calculates the total value to pay when we buy some pencils and erasers.
 Apparently, `M` needs to know the prices of a pencil and an eraser.
@@ -101,7 +101,7 @@ structure:
 The `structure` directive consists of two directives, namely, `submodules` directive and `out` directive. The value of `submodules` directive is an array of definitions of "module instances."
 
 Rigorously, the things we have called "module definitions" so far are in fact definitions of "module classes."
-Roughly speaking, a module class is a "template" of modules instances, which we use in other modules as their "components."
+Roughly speaking, a module class is a "template" of module instances, which we use in other modules as their "components."
 In the diagrams in the previous section, filled rectangles represent module instances, and rectangles with white internals represent module classes.
 
 The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules of `M`.
