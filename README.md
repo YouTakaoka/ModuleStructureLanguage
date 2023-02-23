@@ -36,8 +36,7 @@ A link denotes "feeding" the output of the module which is connected at one end 
 Sometimes, it is also helpful to have the diagrams of primitive modules.
 Since they have no internal structures, drawing their own input and output nodes is enough.
 
-![Add](fig/Add.svg)
-![Mult](fig/Mult.svg)
+![PrimitiveModulesExample](fig/PrimitiveModulesExample.svg)
 
 The reader may wonder why their internal areas are not filled by their colors, unlike in the diagram of `M`.
 The reason of this will be clear in the next section.
@@ -133,6 +132,24 @@ Here is summary of how to draw MSD:
 In addition, we have some logical constraints on the drawers:
 - Each input node of a module instance must be connected to exactly one output node of another module by a link.
 - (On the other hand, an output node of a module instance does not need to be connected to just one input node of some another module by a link. An output node may not be connected to any input node, and may be connected to multiple input nodes of other modules.)
+
+## Definition of Data Types
+As well as the case of modules, each data type is also distinguished from each other by its color in MSD.
+
+For example, one may choose sky blue to represent `int`, and purple to represent `bool`.
+Then, the drawer should add figures like following as the "definition" of these data types:
+
+![DataTypeExample](fig/DataTypeExample.svg)
+
+And in the corresponding MSL document, the definition would be like this:
+
+```yml
+-   name: int
+-   name: bool
+```
+
+They are quite simple because the data types don't have any "internal structures" in this case.
+We would see more complicated data types in the future.
 
 ## Human as Module
 ## Constants
