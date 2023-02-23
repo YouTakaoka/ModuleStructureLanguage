@@ -4,6 +4,7 @@ Module Structure Language (MSL) is a YAML based language to describe the interna
 In the context of this document and the entire of this repository, "module" means a program which takes some series of data in some definite format as input, and processes them to output some data in another format.
 Even manual works are also regarded as special "modules," as long as the formats of input and output data are defined.
 
+# Introduction
 ## Module Structure Diagram
 So, what's the "internal structure" of a module?
 Sometimes, a module consists of some "submodules."
@@ -24,7 +25,16 @@ Now the reader may easily guess the function of another module `*`.
 
 The diagram above clearly describes the "internal structure" of `M`, namely, how it uses the input data and its "submodules" `+` and `*` to produce the output.
 
-Sometimes, it is also helpful to draw the diagrams of primitive modules.
+The triangles placed at the bottom of the rectangles are called "input nodes," whereas the triangles at the top of them are called "output nodes."
+Generally, a module may have multiple output nodes, although it's not the case in the above example.
+Of course, every module must have at least one output node.
+On the other hand, it is possible that some modules don't have any input nodes.
+
+Polygonal lines which connect output nodes and input nodes of modules are called "links."
+A link denotes "feeding" the output of the module which is connected at one end of the line to the module at the another end as its input.
+
+Sometimes, it is also helpful to have the diagrams of primitive modules.
+Since they have no internal structures, drawing their own input and output nodes is enough.
 
 ![Add](fig/Add.svg)
 ![Mult](fig/Mult.svg)
@@ -32,7 +42,7 @@ Sometimes, it is also helpful to draw the diagrams of primitive modules.
 The reader may wonder why their internal areas are not filled by their colors, unlike in the diagram of `M`.
 The reason of this will be clear in the next section.
 
-## Description using a formal language
+## Description Using a Formal Language
 Diagrams like above figures are easy to understand for humans, but little bit inconvenient to treat for computers, because they are not text data.
 Imagine that we have a simple language to describe the structures sketched in the figures above.
 Also, imagine that we have a tool which automatically produces the diagrams from documents written in the language.
@@ -105,3 +115,30 @@ Roughly speaking, a module class is a "template" of module instances, which we u
 In the diagrams in the previous section, filled rectangles represent module instances, and rectangles with white internals represent module classes.
 
 The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules of `M`.
+
+The keyword "in" has a special meaning in the `submodules` directive.
+It's regarded as a name of an "implicit" module instance, which has no input nodes.
+
+Similarly, keyword "out" is also reserved for another "implicit" module instance name in the definition of a module class.
+It is treated as a special "module instance" which has no output nodes (that's impossible for "normal" modules, though).
+
+## Basic Rules for MSD
+Here is summary of how to draw MSD:
+- Module classes are denoted by filled rectangles.
+- Module instances are denoted by blank rectangles.
+- Module classes are identified by their own colors.
+- Input/output nodes of modules are denoted by filled triangles.
+- Connect output nodes and input nodes of modules by links to indicate "feeding" the series of output data to the input nodes.
+
+In addition, we have some logical constraints on the drawers:
+- Each input node of a module instance must be connected to exactly one output node of another module by a link.
+- (On the other hand, an output node of a module instance does not need to be connected to just one input node of some another module by a link. An output node may not be connected to any input node, and may be connected to multiple input nodes of other modules.)
+
+## Human as Module
+## Constants
+
+# More Complicated Examples
+## Generics Modules
+## Abstract Modules
+## Higher Order Modules
+## Type of Modules
