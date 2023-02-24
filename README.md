@@ -141,6 +141,8 @@ Then, the drawer should add figures like following as the "definition" of these 
 
 ![DataTypeExample](fig/DataTypeExample.svg)
 
+For the totally same reason as the case of modules, the definitions of data types are expressed by blank triangles, but not filled ones.
+
 And in the corresponding MSL document, the definition would be like this:
 
 ```yml
@@ -152,6 +154,29 @@ They are quite simple because the data types don't have any "internal structures
 We would see more complicated data types in the future.
 
 ## Human as Module
+As already stated in the above paragraphs, works carried out by humans can also be regarded as special modules called "human modules."
+
+The definition diagrams of human modules are almost same as the software ones, except that the upper corners of the rectangles are truncated:
+
+![HumanModule](fig/HumanModule.svg)
+
+Of course, this is a kind of random example.
+Optionally, one can add the internal structure of this module to the diagram.
+
+In the form of MSL, a new directive named `type` enters in the definition of the module class:
+
+```yml
+name: H
+type: Human
+in:
+    x: int
+    y: int
+    a: bool
+out:
+    z: int
+    b: bool
+```
+
 ## Constants
 
 # More Complicated Examples
