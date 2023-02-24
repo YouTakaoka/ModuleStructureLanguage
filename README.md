@@ -178,6 +178,44 @@ out:
 ```
 
 ## Constants
+Sometimes, one may want to define several constants in the definitions of modules to help describing the internal structures of them.
+
+Here, let us return to the previous example of module `M`.
+Assume that we know the value of `x` and `y` in advance.
+In this case, it is better to treat these quantities as constants in the module, rather than input variables.
+
+```yml
+name: M
+in:
+    n: int
+    m: int
+structure:
+    constants:
+        -   name: PENCIL
+            type: int
+            value: 1
+        -   name: ERASER
+            type: int
+            value: 3
+    submodules:
+        -   name: mult1
+            class: Mult
+            in:
+                a: in.m
+                b: constants.PENCIL
+        -   name: mult2
+            class: Mult
+            in:
+                a: in.n
+                b: constants.ERASER
+        -   name: add
+            class: Add
+            in:
+                a: mult1.c
+                b: mult2.c
+    out:
+        z: add.c
+```
 
 # More Complicated Examples
 ## Generics Modules
