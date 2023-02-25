@@ -80,12 +80,12 @@ The definition of `M` would be much more complicated, because it is not a primit
 ```yml
 name: M
 in:
-  x: int
-  y: int
-  m: int
-  n: int
+    x: int
+    y: int
+    m: int
+    n: int
 out:
-  z: int
+    z: int
 structure:
     submodules:
         -   name: mult1
@@ -115,10 +115,10 @@ In the diagrams in the previous section, filled rectangles represent module inst
 
 The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules of `M`.
 
-The keyword "in" has a special meaning in the `submodules` directive.
+The keyword `in` has a special meaning in the `submodules` directive.
 It's regarded as a name of an "implicit" module instance, which has no input nodes.
 
-Similarly, keyword "out" is also reserved for another "implicit" module instance name in the definition of a module class.
+Similarly, keyword `out` is also reserved for another "implicit" module instance name in the definition of a module class.
 It is treated as a special "module instance" which has no output nodes (that's impossible for "normal" modules, though).
 
 ## Basic Rules for MSD
@@ -177,37 +177,36 @@ out:
     b: bool
 ```
 
-## Constants
+## Literals and Constants
 Sometimes, one may want to define several constants in the definitions of modules to help describing the internal structures of them.
 
 Here, let us return to the previous example of module `M`.
-Assume that we know the value of `x` and `y` in advance.
+Assume that we know the values of `x` and `y` in advance, that is, `1` and `3` for example.
 In this case, it is better to treat these quantities as constants in the module, rather than input variables.
 
+The naivest way to treat constants in the module definitions is just to include the magic values into them, which are called "literals."
+
+![fig:LiteralsExample](fig/LiteralsExample.svg)
+
 ```yml
-name: M
+name: M1
 in:
     n: int
     m: int
+out:
+    z: int
 structure:
-    constants:
-        -   name: PENCIL
-            type: int
-            value: 1
-        -   name: ERASER
-            type: int
-            value: 3
     submodules:
         -   name: mult1
             class: Mult
             in:
                 a: in.m
-                b: constants.PENCIL
+                b: 1
         -   name: mult2
             class: Mult
             in:
                 a: in.n
-                b: constants.ERASER
+                b: 3
         -   name: add
             class: Add
             in:
@@ -216,6 +215,67 @@ structure:
     out:
         z: add.c
 ```
+
+where we named the new version of the module class `M1`.
+
+The definition described in above diagram and document is totally valid and includes no logical mistakes, but its manner can never be said very nice.
+Good programmers know that it is not good idea to include magic numbers in their program code without defining constants, and it's the same in MSD/MSL.
+
+In our language, the concept of "constants" can be expressed by using "constant modules," which are modules storing the constant values in their internals, and just output the values without any input.
+This is easily achieved within the range of standard features of MSD and MSL, without adding any extra words.
+
+First, let's define the module class of the constant module `Constants_M2`.
+According to the common custom of programming, we shall use upper case characters for the names of the constants.
+Hence, we choose identifiers `PENCIL` and `ERASER` for them (whose values are `1` and `3`, as we have defined above).
+
+![fig:ConstantsExample2]()
+
+```yml
+name: Constants_M2
+out:
+    PENCIL: int
+    ERASER: int
+structure:
+    out:
+        PENCIL: 1
+        ERASER: 3
+```
+
+Using the above definitions, the previous MSD and MSL of `M1` would be modified to become like:
+
+![fig:ConstantsExample2]()
+
+```yml
+name: M2
+in:
+    n: int
+    m: int
+out:
+    z: int
+structure:
+    submodules:
+        -   name: const
+            class: Constants_M2
+        -   name: mult1
+            class: Mult
+            in:
+                a: in.m
+                b: const.PENCIL
+        -   name: mult2
+            class: Mult
+            in:
+                a: in.n
+                b: const.ERASER
+        -   name: add
+            class: Add
+            in:
+                a: mult1.c
+                b: mult2.c
+    out:
+        z: add.c
+```
+
+where we named the new version of the module class `M2`.
 
 # More Complicated Examples
 ## Generics Modules
