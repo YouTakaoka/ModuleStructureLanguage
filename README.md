@@ -275,10 +275,64 @@ structure:
         z: add.c
 ```
 
-where we named the new version of the module class `M2`.
+where we have named the new version of the module class `M2`.
+They look much nicer than the previous versions.
+
+In real software systems, the nature of constant modules may often be the contents of some config files.
+Although the files themselves do not "output" any data, it's not forbidden to simply regard them as "modules" in our framework.
 
 # More Complicated Examples
-## Generics Modules
+At this point, the reader may complain about the too poor ability of expression of the language and diagram.
+For example, how should we express conditional branching and loop?
+What should we do if we need to describe the internal structures of modules which include recursion?
+It is obvious that the basic features which have been presented so far are not enough to work on these complicated logical processes.
+
+## Generic Modules
+Let us begin with one of the basic "building blocks" of almost all programming languages, `if` statement.
+Of course, in our framework the feature should be realized as a module class as well.
+
+From the point of view of the functional programming, `if` is a function (or an operator) which takes three arguments (which we call `b`, `t`, `f` in order):
+
+1. A value of `bool` type to be used to determine which value of the remaining parameters (`t` or `f`) to return.
+1. A value to be returned when the function got `true` value as the first argument `b`.
+1. Another value for the case when `false` is given.
+
+If one is told to draw the definition diagram of our new module class `If` (as primitive) right now, he/she would produce something like this:
+
+![fig:IfModule](fig/IfModule.svg)
+
+Something is wrong?
+To say the judgement first, this is completely the right answer (we have to say that it's a miracle, though).
+
+The biggest problem here seems to be that the data type of two of the three input nodes, namely `t` and `f`, and the output node `ret` (they must be of the same type) is unknown at the moment of module class definition.
+It should be determined when the module instances are created from the class, in the definitions of other module classes.
+This is not applicable to any type of modules which we have seen.
+
+So, let us borrow the notion of "generic types" from the today's modern programming languages like C++, Java and many other well-known examples.
+Let `D` be a "type parameter" of `If`.
+To decline that the parameter will be used in the definition, it is natural to introduce a new directive `param` to the top level of the definition statement.
+This enables us to define the "generic module" `If(D)` as following:
+
+```yml
+name: If
+param:
+    - D
+in:
+    b: bool
+    t: D
+    f: D
+out:
+    ret: D
+```
+
+Surprisingly, this is completely consistent with the above diagram.
+The blank triangles with dark blue borders can be thought to denote the type parameter `D`.
+They will be filled by some colors depending on the types given as the parameter, when the module instances are created from the class.
+
+Here is an example of simple module `Max`, which uses `If(int)` as its submodule.
+
+![fig:MaxModule](fig/MaxModule.svg)
+
 ## Abstract Modules
 ## Higher Order Modules
 ## Type of Modules
