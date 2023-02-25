@@ -291,7 +291,7 @@ It is obvious that the basic features which have been presented so far are not e
 Let us begin with one of the basic "building blocks" of almost all programming languages, `if` statement.
 Of course, in our framework the feature should be realized as a module class as well.
 
-From the point of view of the functional programming, `if` is a function (or an operator) which takes three arguments (which we call `b`, `t`, `f` in order):
+From the point of view of the functional programming, `if` is a function (or an operator) which takes three arguments (which we call `b`, `t`, `f` according to their order):
 
 1. A value of `bool` type to be used to determine which value of the remaining parameters (`t` or `f`) to return.
 1. A value to be returned when the function got `true` value as the first argument `b`.
@@ -326,7 +326,7 @@ out:
 ```
 
 Surprisingly, this is completely consistent with the above diagram.
-The blank triangles with dark blue borders can be thought to denote the type parameter `D`.
+The blank triangles with dark blue borders can be thought to denote the type specified by parameter `D` (recall that the blank triangles denote certain types of data, but not pieces of data themselves).
 They will be filled by some colors depending on the types given as the parameter, when the module instances are created from the class.
 
 Here is an example of simple module `Max`, which uses `If(int)` as its submodule.
