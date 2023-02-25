@@ -141,7 +141,7 @@ Then, the drawer should add figures like following as the "definition" of these 
 
 ![DataTypeExample](fig/DataTypeExample.svg)
 
-For the totally same reason as the case of modules, the definitions of data types are expressed by blank triangles, but not filled ones.
+For the totally same reason as the case of modules, the data types are denoted by blank triangles in their definition diagrams, but not filled ones.
 
 And in the corresponding MSL document, the definition would be like this:
 
@@ -184,7 +184,7 @@ Here, let us return to the previous example of module `M`.
 Assume that we know the values of `x` and `y` in advance, that is, `1` and `3` for example.
 In this case, it is better to treat these quantities as constants in the module, rather than input variables.
 
-The naivest way to treat constants in the module definitions is just to include the magic values into them, which are called "literals."
+The naivest way to treat constants in the module definitions is explicitly including the magic values into them, which are called "literals."
 
 ![fig:LiteralsExample](fig/LiteralsExample.svg)
 
@@ -219,16 +219,16 @@ structure:
 where we named the new version of the module class `M1`.
 
 The definition described in above diagram and document is totally valid and includes no logical mistakes, but its manner can never be said very nice.
-Good programmers know that it is not good idea to include magic numbers in their program code without defining constants, and it's the same in MSD/MSL.
+Good programmers know that it is not a good idea to explicitly include magic values in their program code without defining constants, and it's the same in MSD/MSL.
 
 In our language, the concept of "constants" can be expressed by using "constant modules," which are modules storing the constant values in their internals, and just output the values without any input.
-This is easily achieved within the range of standard features of MSD and MSL, without adding any extra words.
+This is easily achieved within the range of standard features of MSD and MSL, without consulting any additional ideas.
 
-First, let's define the module class of the constant module `Constants_M2`.
+First, let's define a module class of the constant module storing the constants for the new version of `M`, which may be denoted by `Constants_M2`.
 According to the common custom of programming, we shall use upper case characters for the names of the constants.
-Hence, we choose identifiers `PENCIL` and `ERASER` for them (whose values are `1` and `3`, as we have defined above).
+Hence, we choose identifiers `PENCIL` and `ERASER` to label them (whose values are `1` and `3`, as we have defined above).
 
-![fig:ConstantsExample2]()
+![fig:ConstantModule](fig/ConstantModule.svg)
 
 ```yml
 name: Constants_M2
@@ -241,9 +241,9 @@ structure:
         ERASER: 3
 ```
 
-Using the above definitions, the previous MSD and MSL of `M1` would be modified to become like:
+With the help of the above definitions, the previous MSD and MSL of `M1` would be improved like following:
 
-![fig:ConstantsExample2]()
+![fig:ConstantsExample](fig/ConstantsExample.svg)
 
 ```yml
 name: M2
