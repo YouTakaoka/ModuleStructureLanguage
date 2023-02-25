@@ -181,10 +181,10 @@ out:
 Sometimes, one may want to define several constants in the definitions of modules to help describing the internal structures of them.
 
 Here, let us return to the previous example of module `M`.
-Assume that we know the values of `x` and `y` in advance, that is, `1` and `3` for example.
+Assume that we know the values of `x` and `y` in advance, say, `1` and `3` for example.
 In this case, it is better to treat these quantities as constants in the module, rather than input variables.
 
-The naivest way to treat constants in the module definitions is explicitly including the magic values into them, which are called "literals."
+The naivest way to treat constants in the module definitions is explicitly including the raw values into them, which are called "literals," just like this:
 
 ![fig:LiteralsExample](fig/LiteralsExample.svg)
 
@@ -241,7 +241,7 @@ structure:
         ERASER: 3
 ```
 
-With the help of the above definitions, the previous MSD and MSL of `M1` would be improved like following:
+With the help of these definitions, the previous MSD and MSL of `M1` would be improved like following:
 
 ![fig:ConstantsExample](fig/ConstantsExample.svg)
 
