@@ -153,10 +153,6 @@ And in the corresponding MSL document, the definition would be like this:
 This is quite simple because the data types don't have any "internal structures" in this case.
 We would see more complicated data types in the future.
 
-**There is an important note here.**
-As the reader may know, the datatypes "defined" above are already included in the [native data structures](https://yaml.org/spec/1.2.2/#nodes) of YAML, so we do not have to "define" them again.
-The above example is just an instruction of how to define new datatypes.
-
 ## The Overall Structure of Documents
 Here, we're going to look the overview of the MSL document for our tiny "system."
 
