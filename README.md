@@ -73,9 +73,9 @@ out:
 ```
 
 They simply decline the names of modules and the data types of input/output data.
-Since these are "primitive" modules, they don't have any directives which express their internal structures.
+Since these are "primitive" modules, they don't have any nodes which express their internal structures.
 
-The definition of `M` would be much more complicated, because it is not a primitive module and thus must include the `structure` directive.
+The definition of `M` would be much more complicated, because it is not a primitive module and thus must include the `structure` mapping node.
 
 ```yml
 name: M
@@ -107,15 +107,15 @@ structure:
         z: add.c
 ```
 
-The `structure` directive consists of two directives, namely, `submodules` directive and `out` directive. The value of `submodules` directive is an array of definitions of "module instances."
+The `structure` node consists of two mapping nodes, namely, `submodules` and `out`. The value of `submodules` mapping node is an array of definitions of "module instances."
 
 Rigorously, the things we have called "module definitions" so far are in fact definitions of "module classes."
 Roughly speaking, a module class is a "template" of module instances, which we use in other modules as their "components."
 In the diagrams in the previous section, filled rectangles represent module instances, and rectangles with white internals represent module classes.
 
-The directives `submodules` and `out` of `structure` directive completely determine the relationships among the input/output data and the submodules of `M`.
+The contents of `submodules` and `out` of `structure` node completely determine the relationships among the input/output data and the submodules of `M`.
 
-The keyword `in` has a special meaning in the `submodules` directive.
+The keyword `in` has a special meaning in the `submodules` mapping node.
 It's regarded as a name of an "implicit" module instance, which has no input nodes.
 
 Similarly, keyword `out` is also reserved for another "implicit" module instance name in the definition of a module class.
@@ -206,7 +206,7 @@ Modules:
                 z: add.c
 ```
 
-Where new directives `Data` and `Modules` have been introduced, whose meanings should be clear from their names.
+Where new mapping nodes `Data` and `Modules` have been introduced, whose meanings should be clear from their names.
 
 ## Human as Module
 As already stated in the above paragraphs, works carried out by humans can also be regarded as special modules called "human modules."
@@ -218,7 +218,7 @@ The definition diagrams of human modules are almost same as the software ones, e
 Of course, this is a kind of random example.
 Optionally, one can add the internal structure of this module to the diagram.
 
-In the form of MSL, a new directive named `type` enters in the definition of the module class:
+In the form of MSL, a new mapping node named `type` enters in the definition of the module class:
 
 ```yml
 name: H
@@ -365,7 +365,7 @@ This is not applicable to any type of modules which we have seen.
 
 So, let us borrow the notion of "generic types" from the today's modern programming languages like C++, Java and many other well-known examples.
 Let `D` be a "type parameter" of `If`.
-To decline that the parameter will be used in the definition, it is natural to introduce a new directive `param` to the top level of the definition statement.
+To decline that the parameter will be used in the definition, it is natural to introduce a new mapping node `param` to the top level of the definition statement.
 This enables us to define the "generic module" `If(D)` as following:
 
 ```yml
