@@ -107,7 +107,7 @@ structure:
         z: add.c
 ```
 
-The `structure` node consists of two mapping nodes, namely, `submodules` and `out`. The value of `submodules` mapping node is an array of definitions of "module instances."
+The `structure` node consists of two mapping nodes, namely, `submodules` and `out`. The value of `submodules` mapping node is a sequence of definitions of "module instances."
 
 Rigorously, the things we have called "module definitions" so far are in fact definitions of "module classes."
 Roughly speaking, a module class is a "template" of module instances, which we use in other modules as their "components."
