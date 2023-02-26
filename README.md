@@ -150,8 +150,63 @@ And in the corresponding MSL document, the definition would be like this:
 -   name: bool
 ```
 
-They are quite simple because the data types don't have any "internal structures" in this case.
+This is quite simple because the data types don't have any "internal structures" in this case.
 We would see more complicated data types in the future.
+
+**There is an important note here.**
+As the reader may know, the datatypes "defined" above are already included in the [native data structures](https://yaml.org/spec/1.2.2/#nodes) of YAML, so we do not have to "define" them again.
+The above example is just an instruction of how to define new datatypes.
+
+## The Overall Structure of Documents
+Here, we're going to look the overview of the MSL document for our tiny "system."
+
+```yml
+Data:
+    -   name: int
+    -   name: bool
+Modules:
+    -   name: Add
+        in:
+            a: int
+            b: int
+        out:
+            c: int
+    -   name: Mult
+        in:
+            a: int
+            b: int
+        out:
+            c: int
+    -   name: M
+        in:
+            x: int
+            y: int
+            m: int
+            n: int
+        out:
+            z: int
+        structure:
+            submodules:
+                -   name: mult1
+                    class: Mult
+                    in:
+                        a: in.m
+                        b: in.x
+                -   name: mult2
+                    class: Mult
+                    in:
+                        a: in.n
+                        b: in.y
+                -   name: add
+                    class: Add
+                    in:
+                        a: mult1.c
+                        b: mult2.c
+            out:
+                z: add.c
+```
+
+Where new directives `Data` and `Modules` have been introduced, whose meanings should be clear from their names.
 
 ## Human as Module
 As already stated in the above paragraphs, works carried out by humans can also be regarded as special modules called "human modules."
@@ -279,7 +334,7 @@ where we have named the new version of the module class `M2`.
 They look much nicer than the previous versions.
 
 In real software systems, the nature of constant modules may often be the contents of some config files.
-Although the files themselves do not "output" any data, it's not forbidden to simply regard them as "modules" in our framework.
+Although the files themselves do not "output" any data, it's not forbidden to simply regard them "modules" in our framework.
 
 # More Complicated Examples
 At this point, the reader may complain about the too poor ability of expression of the language and diagram.
