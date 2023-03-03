@@ -274,7 +274,9 @@ If we expect the processor to perform static type checking, we must tell it the 
 Otherwise the processor cannot decide whether or not to accept the values as of the correct type.
 
 To associate the meaningless sequences of symbols like `int` and `bool` to the semantics of them, we use "tags" of YAML.
-That is, we add slight extra information to the type definitions:
+That is, we add slight extra information to the previous type definitions:
+
+![fig:TagExample](fig/TagExample.svg)
 
 ```yaml
 -   name: int
