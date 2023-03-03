@@ -228,14 +228,12 @@ out:
     b: bool
 ```
 
-## Literals and Constants
-Sometimes, one may want to define several constants in the definitions of modules to help describing the internal structures of them.
-
+## Literals and Tags
 Here, let us return to the previous example of module `M`.
 Assume that we know the values of `x` and `y` in advance, say, `1` and `3` for example.
 In this case, it is better to treat these quantities as constants in the module, rather than input variables.
 
-The naivest way to treat constants in the module definitions is explicitly including the raw values into them, which are called "literals," just like this:
+The naivest way to do the task is to explicitly include the raw values into them, which are called "literals," just like this:
 
 ![fig:LiteralsExample](fig/LiteralsExample.svg)
 
@@ -269,6 +267,28 @@ structure:
 
 where we named the new version of the module class `M1`.
 
+There are a lot of problems here, but the biggest one is about types.
+Our work implicitly relies on the existence of some "converter" from documents written in MSL to MSDs.
+In general, such a thing which attempts to "interpret" the YAML documents is called "processor."
+If we expect the processor to perform static type checking, we must tell it the fact that the values like `1` and `3` are of type `int` (recall that our `int` is only "something" other than `bool` or other types for the processor, at this moment).
+Otherwise the processor cannot decide whether or not to accept the values as of the correct type.
+
+To associate the meaningless sequences of symbols like `int` and `bool` to the semantics of them, we use "tags" of YAML.
+That is, we add slight extra information to the type definitions:
+
+```yaml
+-   name: int
+    tag: int
+-   name: bool
+    tag: bool
+```
+
+Now the processor can learn how it should "interpret" the type names.
+It knows "what `int` is," and can perform static type checking on literals.
+
+The [core schema](https://yaml.org/spec/1.2.2/#103-core-schema) will be used to resolve the tags.
+
+## Constants
 The definition described in above diagram and document is totally valid and includes no logical mistakes, but its manner can never be said very nice.
 Good programmers know that it is not a good idea to explicitly include magic values in their program code without defining constants, and it's the same in MSD/MSL.
 
