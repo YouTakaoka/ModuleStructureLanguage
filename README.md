@@ -133,6 +133,34 @@ In addition, we have some logical constraints on the drawers:
 - Each input node of a module instance must be connected to exactly one output node of another module by a link.
 - (On the other hand, an output node of a module instance does not need to be connected to just one input node of some another module by a link. An output node may not be connected to any input node, and may be connected to multiple input nodes of other modules.)
 
+## Help Strings
+Sometimes it is difficult to guess the functions of modules only from their names, especially if they're primitive.
+So, one may want to know the way to add some information to their documents/diagrams which help the readers of them to understand what the modules actually do.
+
+If we take `Add` and `Mult` as examples, this can be achieved by doing like following:
+
+![fig:HelpStringsExample](fig/HelpStringsExample.svg)
+
+```yml
+name: Add
+in:
+    a: int
+    b: int
+out:
+    c: int
+help: "Outputs the sum of two input values."
+```
+
+```yml
+name: Mult
+in:
+    a: int
+    b: int
+out:
+    c: int
+help: "Outputs the product of two input values."
+```
+
 ## Definition of Data Types
 As well as the case of modules, each data type is also distinguished from each other by its color in MSD.
 
