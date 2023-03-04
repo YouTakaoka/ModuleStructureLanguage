@@ -406,6 +406,32 @@ Here is an example of simple module `Max`, which uses `If(int)` as its submodule
 
 ![fig:MaxModule](fig/MaxModule.svg)
 
+```yaml
+name: Max
+in:
+    x: int
+    y: int
+out:
+    z: int
+structure:
+    submodules:
+        -   name: less
+            class: Less
+            in:
+                x: in.x
+                y: in.y
+        -   name: if
+            class: If(int)
+            in:
+                b: less.b
+                t: in.y
+                f: in.x
+    out:
+        z: if.ret
+```
+
+Where we used another new module `Less`, which plays a role of `<` operator.
+
 ## Abstract Modules
 ## Higher Order Modules
 ## Type of Modules
