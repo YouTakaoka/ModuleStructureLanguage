@@ -273,7 +273,7 @@ In general, such a thing which attempts to "interpret" the YAML documents is cal
 If we expect the processor to perform static type checking, we must tell it the fact that the values like `1` and `3` are of type `int` (recall that our `int` is only "something" other than `bool` or other types for the processor, at this moment).
 Otherwise the processor cannot decide whether or not to accept the values as of the correct type.
 
-To associate the meaningless sequences of symbols like `int` and `bool` to the semantics of them, we use "tags" of YAML.
+To associate the meaningless sequences of symbols like `int` and `bool` to the semantics of them, we use [tags](https://yaml.org/spec/1.2.2/#tags) of YAML, which are instructions to the processor telling how it should give types on literals.
 That is, we add slight extra information to the previous type definitions:
 
 ![fig:TagExample](fig/TagExample.svg)
@@ -285,10 +285,10 @@ That is, we add slight extra information to the previous type definitions:
     tag: bool
 ```
 
-Now the processor can learn how it should "interpret" the type names.
-It knows "what `int` is," and can perform static type checking on literals.
+Now the processor can know how it should "interpret" the type names from the tags attached to them.
+It will learn "what `int` is," and be able to perform static type checking on literals.
 
-The [core schema](https://yaml.org/spec/1.2.2/#103-core-schema) will be used to resolve the tags.
+The processor should use [core schema](https://yaml.org/spec/1.2.2/#103-core-schema) to resolve the tags.
 
 ## Constants
 The definition described in above diagram and document is totally valid and includes no logical mistakes, but its manner can never be said very nice.
