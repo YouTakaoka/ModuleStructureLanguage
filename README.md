@@ -17,7 +17,7 @@ As a result of some internal processing, `M` outputs a single integer, which we 
 
 OK, now we can draw the "Module Structure Diagram (MSD)" of `M`, as shown below:
 
-![SimpleExample1](fig/SimpleExample1.svg)
+![fig:SimpleExample1](fig/SimpleExample1.svg)
 
 Where, `+` and `*` represents the "primitive" modules, the modules which have no internal structures (or which we don't need to consider them).
 Module `+` takes two integers as input data, and outputs the sum of the two integers.
@@ -36,7 +36,7 @@ A link denotes "feeding" the output of the module which is connected at one end 
 Sometimes, it is also helpful to have the diagrams of primitive modules.
 Since they have no internal structures, drawing their own input and output nodes is enough.
 
-![PrimitiveModulesExample](fig/PrimitiveModulesExample.svg)
+![fig:PrimitiveModulesExample](fig/PrimitiveModulesExample.svg)
 
 The reader may wonder why their internal areas are not filled by their colors, unlike in the diagram of `M`.
 The reason of this will be clear in the next section.
@@ -139,7 +139,7 @@ As well as the case of modules, each data type is also distinguished from each o
 For example, one may choose sky blue to represent `int`, and purple to represent `bool`.
 Then, the drawer should add figures like following as the "definition" of these data types:
 
-![DataTypeExample](fig/DataTypeExample.svg)
+![fig:DataTypeExample](fig/DataTypeExample.svg)
 
 For the totally same reason as the case of modules, the data types are denoted by blank triangles in their definition diagrams, but not filled ones.
 
@@ -209,7 +209,7 @@ As already stated in the above paragraphs, works carried out by humans can also 
 
 The definition diagrams of human modules are almost same as the software ones, except that the upper corners of the rectangles are truncated:
 
-![HumanModule](fig/HumanModule.svg)
+![fig:HumanModule](fig/HumanModule.svg)
 
 Of course, this is a kind of random example.
 Optionally, one can add the internal structure of this module to the diagram.
