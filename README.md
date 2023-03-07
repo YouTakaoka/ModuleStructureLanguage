@@ -474,3 +474,11 @@ help: "Outputs the result of evaluating the formula `x < y`."
 ## Modules as Data
 ## Higher Order Modules
 ## Types of Modules
+Here goes the summary of module types:
+- Primitive
+- Complex
+- Human
+- Injection
+- Currying
+
+Note that the word "type" here is not the same as the one of "data type."
