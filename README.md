@@ -57,19 +57,19 @@ Then, definition of these modules may look like as follows:
 ```yml
 name: Add
 in:
-    a: int
-    b: int
+  a: int
+  b: int
 out:
-    c: int
+  c: int
 ```
 
 ```yml
 name: Mult
 in:
-    a: int
-    b: int
+  a: int
+  b: int
 out:
-    c: int
+  c: int
 ```
 
 They simply decline the names of modules and the data types of input/output data.
@@ -80,31 +80,31 @@ The definition of `M` would be much more complicated, because it is not a primit
 ```yml
 name: M
 in:
-    x: int
-    y: int
-    m: int
-    n: int
+  x: int
+  y: int
+  m: int
+  n: int
 out:
-    z: int
+  z: int
 structure:
-    submodules:
-        -   name: mult1
-            class: Mult
-            in:
-                a: in.m
-                b: in.x
-        -   name: mult2
-            class: Mult
-            in:
-                a: in.n
-                b: in.y
-        -   name: add
-            class: Add
-            in:
-                a: mult1.c
-                b: mult2.c
-    out:
-        z: add.c
+  submodules:
+    - name: mult1
+      class: Mult
+      in:
+        a: in.m
+        b: in.x
+    - name: mult2
+      class: Mult
+      in:
+        a: in.n
+        b: in.y
+    - name: add
+      class: Add
+      in:
+        a: mult1.c
+        b: mult2.c
+  out:
+    z: add.c
 ```
 
 The `structure` node consists of two mapping nodes, namely, `submodules` and `out`. The value of `submodules` mapping node is a sequence of definitions of "module instances."
@@ -144,20 +144,20 @@ If we take `Add` and `Mult` as examples, this can be achieved by doing like foll
 ```yml
 name: Add
 in:
-    a: int
-    b: int
+  a: int
+  b: int
 out:
-    c: int
+  c: int
 help: "Outputs the sum of two input values."
 ```
 
 ```yml
 name: Mult
 in:
-    a: int
-    b: int
+  a: int
+  b: int
 out:
-    c: int
+  c: int
 help: "Outputs the product of two input values."
 ```
 
@@ -174,8 +174,8 @@ For the totally same reason as the case of modules, the data types are denoted b
 And in the corresponding MSL document, the definition would be like this:
 
 ```yml
--   name: int
--   name: bool
+- name: int
+- name: bool
 ```
 
 This is quite simple because the data types don't have any "internal structures" in this case.
@@ -186,48 +186,48 @@ Here, we're going to look the overview of the MSL document for our tiny "system.
 
 ```yml
 Data:
-    -   name: int
-    -   name: bool
+  - name: int
+  - name: bool
 Modules:
-    -   name: Add
-        in:
-            a: int
-            b: int
-        out:
-            c: int
-    -   name: Mult
-        in:
-            a: int
-            b: int
-        out:
-            c: int
-    -   name: M
-        in:
-            x: int
-            y: int
-            m: int
-            n: int
-        out:
-            z: int
-        structure:
-            submodules:
-                -   name: mult1
-                    class: Mult
-                    in:
-                        a: in.m
-                        b: in.x
-                -   name: mult2
-                    class: Mult
-                    in:
-                        a: in.n
-                        b: in.y
-                -   name: add
-                    class: Add
-                    in:
-                        a: mult1.c
-                        b: mult2.c
-            out:
-                z: add.c
+  - name: Add
+    in:
+      a: int
+      b: int
+    out:
+      c: int
+  - name: Mult
+    in:
+      a: int
+      b: int
+    out:
+      c: int
+  - name: M
+    in:
+      x: int
+      y: int
+      m: int
+      n: int
+    out:
+      z: int
+    structure:
+      submodules:
+        - name: mult1
+          class: Mult
+          in:
+            a: in.m
+            b: in.x
+        - name: mult2
+          class: Mult
+          in:
+            a: in.n
+            b: in.y
+        - name: add
+          class: Add
+          in:
+            a: mult1.c
+            b: mult2.c
+      out:
+        z: add.c
 ```
 
 Where new mapping nodes `Data` and `Modules` have been introduced, whose meanings should be clear from their names.
@@ -248,12 +248,12 @@ In the form of MSL, a new mapping node named `type` enters in the definition of 
 name: H
 type: Human
 in:
-    x: int
-    y: int
-    a: bool
+  x: int
+  y: int
+  a: bool
 out:
-    z: int
-    b: bool
+  z: int
+  b: bool
 ```
 
 ## Literals and Tags
@@ -268,29 +268,29 @@ The naivest way to do the task is to explicitly include the raw values into them
 ```yml
 name: M1
 in:
-    n: int
-    m: int
+  n: int
+  m: int
 out:
-    z: int
+  z: int
 structure:
-    submodules:
-        -   name: mult1
-            class: Mult
-            in:
-                a: in.m
-                b: 1
-        -   name: mult2
-            class: Mult
-            in:
-                a: in.n
-                b: 3
-        -   name: add
-            class: Add
-            in:
-                a: mult1.c
-                b: mult2.c
-    out:
-        z: add.c
+  submodules:
+    - name: mult1
+      class: Mult
+      in:
+        a: in.m
+        b: 1
+    - name: mult2
+      class: Mult
+      in:
+        a: in.n
+        b: 3
+    - name: add
+      class: Add
+      in:
+        a: mult1.c
+        b: mult2.c
+  out:
+    z: add.c
 ```
 
 where we named the new version of the module class `M1`.
@@ -307,10 +307,10 @@ That is, we add slight extra information to the previous type definitions:
 ![fig:TagExample](fig/TagExample.svg)
 
 ```yaml
--   name: int
-    tag: int
--   name: bool
-    tag: bool
+- name: int
+  tag: int
+- name: bool
+  tag: bool
 ```
 
 Now the processor can know how it should "interpret" the type names from the tags attached to them.
@@ -334,12 +334,12 @@ Hence, we choose identifiers `PENCIL` and `ERASER` to label them (whose values a
 ```yml
 name: Constants_M2
 out:
-    PENCIL: int
-    ERASER: int
+  PENCIL: int
+  ERASER: int
 structure:
-    out:
-        PENCIL: 1
-        ERASER: 3
+  out:
+    PENCIL: 1
+    ERASER: 3
 ```
 
 With the help of these definitions, the previous MSD and MSL of `M1` would be improved like following:
@@ -349,31 +349,31 @@ With the help of these definitions, the previous MSD and MSL of `M1` would be im
 ```yml
 name: M2
 in:
-    n: int
-    m: int
+  n: int
+  m: int
 out:
-    z: int
+  z: int
 structure:
-    submodules:
-        -   name: const
-            class: Constants_M2
-        -   name: mult1
-            class: Mult
-            in:
-                a: in.m
-                b: const.PENCIL
-        -   name: mult2
-            class: Mult
-            in:
-                a: in.n
-                b: const.ERASER
-        -   name: add
-            class: Add
-            in:
-                a: mult1.c
-                b: mult2.c
-    out:
-        z: add.c
+  submodules:
+    - name: const
+      class: Constants_M2
+    - name: mult1
+      class: Mult
+      in:
+        a: in.m
+        b: const.PENCIL
+    - name: mult2
+      class: Mult
+      in:
+        a: in.n
+        b: const.ERASER
+    - name: add
+      class: Add
+      in:
+        a: mult1.c
+        b: mult2.c
+  out:
+    z: add.c
 ```
 
 where we have named the new version of the module class `M2`.
@@ -417,13 +417,13 @@ This enables us to define the "generic module" `If(D)` as following:
 ```yml
 name: If
 param:
-    - D
+  - D
 in:
-    b: bool
-    t: D
-    f: D
+  b: bool
+  t: D
+  f: D
 out:
-    ret: D
+  ret: D
 help: "Returns the value of either `t` or `f` depending on the value of input `b`."
 ```
 
@@ -438,25 +438,25 @@ Here is an example of simple module `Max`, which uses `If(int)` as its submodule
 ```yaml
 name: Max
 in:
-    x: int
-    y: int
+  x: int
+  y: int
 out:
-    z: int
+  z: int
 structure:
-    submodules:
-        -   name: less
-            class: Less
-            in:
-                x: in.x
-                y: in.y
-        -   name: if
-            class: If(int)
-            in:
-                b: less.b
-                t: in.y
-                f: in.x
-    out:
-        z: if.ret
+  submodules:
+    - name: less
+      class: Less
+      in:
+        x: in.x
+        y: in.y
+    - name: if
+      class: If(int)
+      in:
+        b: less.b
+        t: in.y
+        f: in.x
+  out:
+    z: if.ret
 ```
 
 Where we used another new module `Less`, which plays a role of `<` operator:
@@ -464,10 +464,10 @@ Where we used another new module `Less`, which plays a role of `<` operator:
 ```yaml
 name: Less
 in:
-    x: int
-    y: int
+  x: int
+  y: int
 out:
-    b: bool
+  b: bool
 help: "Outputs the result of evaluating the formula `x < y`."
 ```
 
