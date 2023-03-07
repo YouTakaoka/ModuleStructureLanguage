@@ -1,0 +1,19 @@
+name: CurryBin
+type: Currying
+from:
+  name: B
+  implements: Binary(int)
+to:
+  name: C
+  in:
+    c: int
+  out:
+    U: Unary(int)
+  map:
+    U:
+      injects:
+        y: in.c
+      in:
+        x: x
+      out:
+        z: y

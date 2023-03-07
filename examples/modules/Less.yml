@@ -1,0 +1,7 @@
+name: Less
+in:
+  x: int
+  y: int
+out:
+  b: bool
+help: "Outputs the result of evaluating the formula `x < y`."

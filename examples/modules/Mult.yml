@@ -1,0 +1,7 @@
+name: Mult
+in:
+  a: int
+  b: int
+out:
+  c: int
+help: "Outputs the product of two input values."

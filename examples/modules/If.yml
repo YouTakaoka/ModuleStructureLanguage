@@ -1,0 +1,10 @@
+name: If
+param:
+  - D
+in:
+  b: bool
+  t: D
+  f: D
+out:
+  ret: D
+help: "Returns the value of either `t` or `f` depending on the value of input `b`."

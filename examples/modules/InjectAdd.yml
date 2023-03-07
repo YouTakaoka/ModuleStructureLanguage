@@ -1,0 +1,15 @@
+name: InjectAdd
+type: Injection
+into: Add
+in:
+  c: int
+out:
+  Add_c: Unary(int)
+map:
+  Add_c:
+    injects:
+      b: in.c
+    in:
+      a: x
+    out:
+      c: y

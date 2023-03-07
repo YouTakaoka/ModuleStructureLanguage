@@ -1,0 +1,8 @@
+name: Unary
+type: Abstract
+param:
+  - D
+in:
+  x: D
+out:
+  y: D

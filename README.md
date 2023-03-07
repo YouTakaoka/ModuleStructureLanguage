@@ -424,6 +424,7 @@ in:
     f: D
 out:
     ret: D
+help: "Returns the value of either `t` or `f` depending on the value of input `b`."
 ```
 
 Surprisingly, this is completely consistent with the above diagram.
@@ -458,8 +459,18 @@ structure:
         z: if.ret
 ```
 
-Where we used another new module `Less`, which plays a role of `<` operator.
+Where we used another new module `Less`, which plays a role of `<` operator:
+
+```yaml
+name: Less
+in:
+    x: int
+    y: int
+out:
+    b: bool
+help: "Outputs the result of evaluating the formula `x < y`."
+```
 
 ## Abstract Modules
 ## Higher Order Modules
-## Type of Modules
+## Types of Modules
