@@ -471,6 +471,6 @@ out:
 help: "Outputs the result of evaluating the formula `x < y`."
 ```
 
-## Abstract Modules
+## Modules as Data
 ## Higher Order Modules
 ## Types of Modules

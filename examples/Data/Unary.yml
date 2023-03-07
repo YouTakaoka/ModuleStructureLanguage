@@ -1,0 +1,8 @@
+name: Unary
+def:
+  param:
+    - D
+  in:
+    x: D
+  out:
+    y: D

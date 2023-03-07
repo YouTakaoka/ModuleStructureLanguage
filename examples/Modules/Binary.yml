@@ -1,9 +1,0 @@
-name: Binary
-type: Abstract
-param:
-  - D
-in:
-  x: D
-  y: D
-out:
-  z: D

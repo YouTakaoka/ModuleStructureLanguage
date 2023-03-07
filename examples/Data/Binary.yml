@@ -1,0 +1,9 @@
+name: Binary
+def:
+  param:
+    - D
+  in:
+    x: D
+    y: D
+  out:
+    z: D
